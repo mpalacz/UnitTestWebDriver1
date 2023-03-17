@@ -25,9 +25,22 @@ namespace UnitTestWebDriver1
             element.Click();
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            System.Threading.Thread.Sleep(1000);
+            IWebElement element = driver.FindElement(By.LinkText("Log off"));
+            element.Click();
+            driver.Manage().Cookies.DeleteAllCookies();
+            driver.Quit();
+        }
+
         [TestMethod]
         public void TestMethod1()
         {
+            string expectedValue = "Hello, user1@wp.pl !";
+            string resultValue = driver.FindElement(By.CssSelector("a[title='Manage your account']")).Text;
+            Assert.AreEqual(expectedValue, resultValue);
         }
     }
 }
