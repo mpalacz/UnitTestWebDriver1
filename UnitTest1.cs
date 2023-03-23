@@ -41,6 +41,14 @@ namespace UnitTestWebDriver1
             string expectedValue = "Hello, user1@wp.pl !";
             string resultValue = driver.FindElement(By.CssSelector("a[title='Manage your account']")).Text;
             Assert.AreEqual(expectedValue, resultValue);
+
+            expectedValue = "Home Page - My ASP.NET Application";
+            resultValue = driver.Title;
+            Assert.AreEqual(expectedValue, resultValue);
+
+            expectedValue = "ASP.NET";
+            resultValue = driver.FindElement(By.Id("aspnetTitle")).Text;
+            Assert.AreEqual(expectedValue, resultValue);
         }
     }
 }
